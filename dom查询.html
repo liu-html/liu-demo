@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        .inner{
+            width: 300px;
+            height: 300px;
+            border: 2px black solid;
+        }
+        #btnList{
+            width: 300px;
+            height: 600px;
+            border: 2px pink solid;
+            float: left;
+        }
+    </style> -->
+    <script>
+        //定义一个函数，来对每一个相同的函数进行封装
+        //idStr:表示按钮的id
+        //fun:当单击事件被促发时，调用函数fun进行使用
+        function myClick(idStr,fun){
+            var btn=document.getElementById(idStr);
+            btn.onclick=fun;
+        }
+        window.onload=function(){
+            var btn01=document.getElementById("btn01");
+            btn01.onclick=function(){
+                var bj=document.getElementById("bj");
+                alert(bj.innerHTML);
+            };
+
+            var btn02=document.getElementById("btn02");
+            btn02.onclick=function(){
+                var lis=document.getElementsByTagName("li");
+                for(var i=0;i<lis.length;i++){
+                    alert(lis[i].innerHTML);
+                }
+            };
+
+            var btn03=document.getElementById("btn03");
+            btn03.onclick=function(){
+                var inputs=document.getElementsByName("gender");
+                for(var i=0;i<inputs.length;i++){
+                    // innerHTML是获取标签内的代码
+                    // alert(inputs[i].innerHTML);
+
+                    //获取属性
+                    //元素.属性名
+                    //class时需要：元素.calssName
+                    alert(inputs[i].value);
+                }
+            };
+
+            var btn04=document.getElementById("btn04");
+            btn04.onclick=function(){
+                var city=document.getElementById("city");
+                //在city范围内
+                var lis=city.getElementsByTagName("li");
+                for(var i=0;i<lis.length;i++){
+                    alert(lis[i].innerHTML);
+                }
+                
+            };
+
+            var btn05=document.getElementById("btn05");
+            btn05.onclick=function(){
+                var city=document.getElementById("city");
+                var cns=city.children;
+                //标签间的空白也是文本；在ie8及以下中不会出现这种情况
+                for(var i=0;i<cns.length;i++){
+                    alert(cns[i].innerHTML);
+                }
+            };
+
+            var btn06=document.getElementById("btn06");
+            btn06.onclick=function(){
+                var phone=document.getElementById("phone");
+                var fir=phone.firstChild;
+                alert(fir.innerHTML);
+            }
+
+            myClick("btn07",function(){
+                var bj=document.getElementById("bj");
+
+                var pn=bj.parentNode;
+
+                //alert(pn.innerHTML);
+                alert(pn.innerText);
+            });
+
+            myClick("btn08",function(){
+                var and=document.getElementById("android");
+                //var ps=and.previousSibling;
+                var pe=and.previousElementSibling;
+                alert(pe.innerHTML);
+            });
+
+            myClick("btn09",function(){
+                var um=document.getElementById("username");
+                alert(um.value);
+            });
+
+            myClick("btn10",function(){
+                var um=document.getElementById("username");
+                um.value="今天天气不太好";
+            });
+
+            myClick("btn11",function(){
+                var bj=document.getElementById("bj");
+                var fc=bj.firstChild;
+                alert(fc.nodeValue);
+            });
+        }
+    </script>
+</head>
+<body>
+    <div id="right">
+        <div class="inner">
+            <ul id="city">
+                <p>
+                    你喜欢哪座城市城市？
+                </p>
+                <li id="bj">北京</li>
+                <li>上海</li>
+                <li>深圳</li>
+                <li>纽约</li>
+            </ul>
+            <ul id="game">
+                <p>
+                    你喜欢哪款游戏？
+                </p>
+                <li>王者荣耀</li>
+                <li>阴阳师</li>
+                <li>跑跑卡丁车</li>
+                <li>刺激战场</li>
+            </ul>
+            <ul id="phone">
+                <p>
+                    你的手机操作系统？
+                </p>
+                <li>ios</li>
+                <li id="android">android</li>
+                <li>黑莓</li>
+            </ul>
+        </div>
+        <div class="inner">
+            Gender:
+            <input type="radio"name="gender" value="male">
+            Male
+            <input type="radio" name="gender" value="female">
+            Female
+            <br>
+            <br>
+            Name:
+            <input type="text" name="name" value="abcde" id="username">
+        </div>
+    </div>
+    <div id="btnList">
+        <div><button id="btn01">查找#bj节点</button></div>
+        <div><button id="btn02">查找所有li节点</button></div>
+        <div><button id="btn03">查找name=gender的所有节点</button></div>
+        <div><button id="btn04">查找city的所有li节点</button></div>
+        <div><button id="btn05">查找city的所有子节点</button></div>
+        <div><button id="btn06">返回phone的第一个子节点</button></div>
+        <div><button id="btn07">返回#bj的父节点</button></div>
+        <div><button id="btn08">返回Android的前一个兄弟节点</button></div>
+        <div><button id="btn09">返回username的value属性值</button></div>
+        <div><button id="btn10">设置username的value属性值</button></div>
+        <div><button id="btn11">返回#bj的文本值</button></div>
+    </div>
+</body>
+</html>
